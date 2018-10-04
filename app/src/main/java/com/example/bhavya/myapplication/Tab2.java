@@ -1,5 +1,6 @@
 package com.example.bhavya.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,7 @@ public class Tab2 extends Fragment {
     public RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<item_list> listItems;
+    private Button button;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -39,6 +42,8 @@ public class Tab2 extends Fragment {
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        button=(Button) view.findViewById(R.id.add_button);
+
 
         listItems=new ArrayList<>();
 
@@ -51,5 +56,13 @@ public class Tab2 extends Fragment {
         }
         adapter=new array_adapter(listItems,getActivity());
         recyclerView.setAdapter(adapter);
+        button.setOnClickListener(new View.OnClickListener() {
+                                      @Override
+                                      public void onClick(View v) {
+                                          Intent i=new Intent(".create_group");
+                                          startActivity(i);
+                                      }
+                                  }
+        );
     }
 }
