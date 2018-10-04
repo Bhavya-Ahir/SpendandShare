@@ -34,15 +34,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".create_group"
-            android:label="@string/title_activity_create_group">
+        <activity android:name=".createGroup">
             <intent-filter>
-                <action android:name=".create_group" />
+                <action android:name=".createGroup" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
     </application>
 
