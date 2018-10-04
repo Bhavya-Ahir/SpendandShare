@@ -2,6 +2,7 @@ package com.example.bhavya.myapplication;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -222,10 +223,9 @@ public class login extends AppCompatActivity {
 
 
             Toast.makeText(this, "Name of the user :" + personName + " user id is : " + personId, Toast.LENGTH_SHORT).show();
-
-            Intent i=new Intent(".MainActivity");
-            startActivity(i);
-
+            Intent intent1=new Intent(login.this,MainActivity.class);
+            finish();
+            startActivity(intent1);
         }
 
 
@@ -234,8 +234,11 @@ public class login extends AppCompatActivity {
 
     }
 
-
-
-
-
+    @Override
+    public void onBackPressed() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN
+                ) {
+            finishAffinity();
+        }
+    }
 }

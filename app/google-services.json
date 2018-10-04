@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "930209428074",
-    "firebase_url": "https://spendshare-45825.firebaseio.com",
-    "project_id": "spendshare-45825",
-    "storage_bucket": "spendshare-45825.appspot.com"
+    "project_number": "794148279701",
+    "firebase_url": "https://myapplication4-86a9e.firebaseio.com",
+    "project_id": "myapplication4-86a9e",
+    "storage_bucket": "myapplication4-86a9e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:930209428074:android:0ceadc60038067aa",
+        "mobilesdk_app_id": "1:794148279701:android:0ceadc60038067aa",
         "android_client_info": {
           "package_name": "com.example.bhavya.myapplication"
         }
       },
       "oauth_client": [
         {
-          "client_id": "930209428074-6q8tc35ktv08c3e0ktplbgnpe9e5mq7n.apps.googleusercontent.com",
+          "client_id": "794148279701-80g77gjtq0hgo34o1n3net4m2sk4q68m.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.bhavya.myapplication",
-            "certificate_hash": "ac6fd6c0d02de211e67c72a057e1198908bb0f40"
+            "certificate_hash": "faa9f29e2a229f046210806837d2cc7b9f0fbd5c"
           }
         },
         {
-          "client_id": "930209428074-6mb55hi146qkmb6blonj4g3hjsd0bbl7.apps.googleusercontent.com",
+          "client_id": "794148279701-nkfpuir7qherrmt9fg7ksvb916tqlkpj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCDjj__4kjr6haKUnugmSIw54Pt1KqmXGw"
+          "current_key": "AIzaSyB1aZlSThx6QM1lan2bTXqo3aMdjUoImsE"
         }
       ],
       "services": {
@@ -40,51 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "930209428074-6mb55hi146qkmb6blonj4g3hjsd0bbl7.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:930209428074:android:aa3109c5691021c5",
-        "android_client_info": {
-          "package_name": "com.example.bhavya.spendshare"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "930209428074-erk73dfgo146mnugkjnjetopl9ba0h6c.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.bhavya.spendshare",
-            "certificate_hash": "ac6fd6c0d02de211e67c72a057e1198908bb0f40"
-          }
-        },
-        {
-          "client_id": "930209428074-6mb55hi146qkmb6blonj4g3hjsd0bbl7.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCDjj__4kjr6haKUnugmSIw54Pt1KqmXGw"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "930209428074-6mb55hi146qkmb6blonj4g3hjsd0bbl7.apps.googleusercontent.com",
+              "client_id": "794148279701-nkfpuir7qherrmt9fg7ksvb916tqlkpj.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
