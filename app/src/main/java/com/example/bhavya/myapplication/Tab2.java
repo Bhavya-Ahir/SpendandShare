@@ -59,7 +59,7 @@ public class Tab2 extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View v) {
-                                          Intent i=new Intent(".create_group");
+                                          Intent i=new Intent(".createGroup");
                                           startActivity(i);
                                       }
                                   }
