@@ -1,23 +1,25 @@
 package com.example.bhavya.myapplication;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Main2Activity extends AppCompatActivity {
+public class Settle extends AppCompatActivity {
 
     static ArrayList<String> name = new ArrayList<String>();
     static ArrayList<Double> paid = new ArrayList<Double>();
     public DatabaseReference myDatabase;
-
+    public String groupName;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -29,7 +31,8 @@ public class Main2Activity extends AppCompatActivity {
         name = intent.getStringArrayListExtra("name");
         paid = (ArrayList<Double>) getIntent().getSerializableExtra("paid");
         //  share();
-        myDatabase= FirebaseDatabase.getInstance().getReference();
+        groupName = getIntent().getStringExtra("Group Name");
+        myDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getUid()).child(groupName);
         Group p=new Group();
         p.createPerson();
         p.calculateBalance();
@@ -83,7 +86,7 @@ public class Main2Activity extends AppCompatActivity {
         ArrayList<Person> list = new ArrayList<Person>();
         ArrayList<Person> plist = new ArrayList<Person>();
         ArrayList<Person> nlist = new ArrayList<Person>();
-        HashMap<String,String> dataMap=new HashMap<>();
+        HashMap<String, Double> dataMap = new HashMap<>();
         private int count = 0;
         private double bill = 0;
 
@@ -95,12 +98,13 @@ public class Main2Activity extends AppCompatActivity {
             this.bill = bill;
         }
         public  void createPerson() {
-            for (int i = 0; i < Main2Activity.name.size(); i++) {
-                list.add(new Person(Main2Activity.name.get(i), Main2Activity.paid.get(i), 0));
-                dataMap.put("UserName",Main2Activity.name.get(i));
-                dataMap.put("Amount paid",Main2Activity.paid.get(i).toString());
-                myDatabase.push().setValue(dataMap);
-                bill = bill + Main2Activity.paid.get(i);
+            for (int i = 0; i < Settle.name.size(); i++) {
+                list.add(new Person(Settle.name.get(i), Settle.paid.get(i), 0));
+                dataMap.put(Settle.name.get(i), Settle.paid.get(i));
+//                dataMap.put("Amount paid "+i,Settle.paid.get(i).toString());
+                Log.i("grp name", groupName);
+                myDatabase.setValue(dataMap);
+                bill = bill + Settle.paid.get(i);
                 count++;
             }
         }
@@ -164,7 +168,7 @@ public class Main2Activity extends AppCompatActivity {
             }
             ListView listView ;
             listView = (ListView) findViewById(R.id.list);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(Main2Activity.this,
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(Settle.this,
                     android.R.layout.simple_list_item_1, android.R.id.text1,message);
             listView.setAdapter(adapter);
 

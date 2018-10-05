@@ -21,6 +21,7 @@ public class createGroup extends AppCompatActivity {
     ListView show;
     ListView show1;
     Button newactivity;
+    String groupName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class createGroup extends AppCompatActivity {
         show = (ListView)findViewById(R.id.listView);
         show1 = (ListView)findViewById(R.id.listView1);
         save=(Button)findViewById(R.id.btnSave);
-
+        groupName = getIntent().getStringExtra("Group Name");
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +55,8 @@ public class createGroup extends AppCompatActivity {
         newactivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(createGroup.this,Main2Activity.class);
+                Intent intent = new Intent(createGroup.this, Settle.class);
+                intent.putExtra("Group Name", groupName);
                 intent.putExtra("name",addarray);
                 intent.putExtra("paid",addamt);
                 finish();

@@ -30,7 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main2Activity">
+        <activity android:name=".Settle">
             <intent-filter>
                 <action android:name=".Main2Activity" />
 
