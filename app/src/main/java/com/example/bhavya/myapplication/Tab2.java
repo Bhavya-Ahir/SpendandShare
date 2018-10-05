@@ -90,6 +90,7 @@ public class Tab2 extends Fragment {
                     listItems.add(list);
 
                     Intent i = new Intent(".createGroup");
+                    i.putExtra("Group Name", subEditText.getText().toString());
                     startActivity(i);
                 }
 

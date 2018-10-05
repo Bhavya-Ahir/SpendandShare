@@ -57,7 +57,7 @@ public class Tab3 extends Fragment {
         newactivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity().getApplicationContext(),Main2Activity.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Settle.class);
                 intent.putExtra("name",addarray);
                 intent.putExtra("paid",addamt);
                 startActivity(intent);
