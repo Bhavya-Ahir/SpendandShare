@@ -8,8 +8,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
 
 public class createGroup extends AppCompatActivity {
 
@@ -22,6 +26,8 @@ public class createGroup extends AppCompatActivity {
     ListView show1;
     Button newactivity;
     String groupName;
+    Spinner spinner;
+    ArrayAdapter<CharSequence> spinneradapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +39,27 @@ public class createGroup extends AppCompatActivity {
         show = (ListView)findViewById(R.id.listView);
         show1 = (ListView)findViewById(R.id.listView1);
         save=(Button)findViewById(R.id.btnSave);
+        spinner=(Spinner)findViewById(R.id.spinner);
+        spinneradapter=ArrayAdapter.createFromResource(this,R.array.Expenditure_type,android.R.layout.simple_spinner_item);
+        spinneradapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinneradapter);
         groupName = getIntent().getStringExtra("Group Name");
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String getInput=txt.getText().toString();
-                double getamt=Double.parseDouble(amt.getText().toString());
+                String getInput;
+                double getamt;
+                if(txt.getText().toString().length()!=0)
+                 getInput=txt.getText().toString();
+                else {
+                    Toast.makeText(createGroup.this, "Please enter a Name", Toast.LENGTH_LONG).show();
+                    getInput=NULL;
+                }
+
+                  if(amt.getText().toString().length()!=0)
+                    getamt=Double.parseDouble(amt.getText().toString());
+                  else
+                      getamt=0;
                 addarray.add(getInput);
                 addamt.add(getamt);
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(createGroup.this,
