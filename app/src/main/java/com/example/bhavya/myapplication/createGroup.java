@@ -49,17 +49,20 @@ public class createGroup extends AppCompatActivity {
             public void onClick(View v) {
                 String getInput;
                 double getamt;
-                if(txt.getText().toString().length()!=0)
-                 getInput=txt.getText().toString();
-                else {
+                if(txt.getText().toString().length()==0||txt.getText().equals(" ")) {
                     Toast.makeText(createGroup.this, "Please enter a Name", Toast.LENGTH_LONG).show();
-                    getInput=NULL;
+                    getInput = NULL;
+                }
+                else {
+                    getInput=txt.getText().toString();
                 }
 
-                  if(amt.getText().toString().length()!=0)
-                    getamt=Double.parseDouble(amt.getText().toString());
-                  else
+                  if(amt.getText().toString().length()==0||txt.getText().equals(" "))
                       getamt=0;
+                  else
+                      getamt=Double.parseDouble(amt.getText().toString());
+
+
                 addarray.add(getInput);
                 addamt.add(getamt);
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(createGroup.this,
