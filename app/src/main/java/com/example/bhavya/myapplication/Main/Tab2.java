@@ -1,5 +1,6 @@
-package com.example.bhavya.myapplication;
+package com.example.bhavya.myapplication.Main;
 
+import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.bhavya.myapplication.R;
+import com.example.bhavya.myapplication.Recycler.array_adapter;
+import com.example.bhavya.myapplication.Recycler.item_list;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +87,7 @@ public class Tab2 extends Fragment {
                 if(subEditText.getText().toString().length()==0) {
 
                     Toast.makeText(getActivity(), "Invalid", Toast.LENGTH_LONG).show();
+
                 }
                 else{
                     item_list list = new item_list(
@@ -91,7 +97,9 @@ public class Tab2 extends Fragment {
 
                     Intent i = new Intent(".createGroup");
                     i.putExtra("Group Name", subEditText.getText().toString());
-                    startActivity(i);
+
+                    startActivity(i,
+                            ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 }
 
             }

@@ -1,6 +1,7 @@
-package com.example.bhavya.myapplication;
+package com.example.bhavya.myapplication.Recycler;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.bhavya.myapplication.R;
 
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class array_adapter extends RecyclerView.Adapter<array_adapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull array_adapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final array_adapter.ViewHolder viewHolder, int i) {
 
         final item_list listItem=listItems.get(i);
 
@@ -43,10 +45,13 @@ public class array_adapter extends RecyclerView.Adapter<array_adapter.ViewHolder
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"Click"+listItem.name,Toast.LENGTH_LONG).show();
+
+                Intent i = new Intent(".GroupData");
+                context.startActivity(i);
             }
         });
     }
+
 
     @Override
     public int getItemCount() {

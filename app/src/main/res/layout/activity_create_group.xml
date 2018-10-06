@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".createGroup">
+    tools:context=".GROUPS.createGroup">
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -15,13 +15,17 @@
         android:text="Select Expenditure type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentLeft="true"
+        android:textSize="20sp" />
+
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/expendituretextview"
+        android:scrollbarSize="20sp"
+
         ></Spinner>
 
 </RelativeLayout>
@@ -45,6 +49,7 @@
         android:ems="10"
         android:hint="Enter amount"
         android:inputType="number" />
+
 
     <Button
         android:id="@+id/btnSave"

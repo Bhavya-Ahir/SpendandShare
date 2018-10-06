@@ -1,4 +1,4 @@
-package com.example.bhavya.myapplication;
+package com.example.bhavya.myapplication.Main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.bhavya.myapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_signOut) {
             mAuth.signOut();
-            Intent intent=new Intent(MainActivity.this,login.class);
+            Intent intent = new Intent(".login");
             finish();
             startActivity(intent);
             return true;
