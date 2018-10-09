@@ -87,7 +87,7 @@ public class Settle extends AppCompatActivity {
         ArrayList<Person> list = new ArrayList<Person>();
         ArrayList<Person> plist = new ArrayList<Person>();
         ArrayList<Person> nlist = new ArrayList<Person>();
-        HashMap<String, Double> dataMap = new HashMap<>();
+        //HashMap<String, Double> dataMap = new HashMap<>();
         private int count = 0;
         private double bill = 0;
 
@@ -101,10 +101,10 @@ public class Settle extends AppCompatActivity {
         public  void createPerson() {
             for (int i = 0; i < Settle.name.size(); i++) {
                 list.add(new Person(Settle.name.get(i), Settle.paid.get(i), 0));
-                dataMap.put(Settle.name.get(i), Settle.paid.get(i));
+                //dataMap.put(Person.class);
 //                dataMap.put("Amount paid "+i,Settle.paid.get(i).toString());
                 Log.i("grp name", groupName);
-                myDatabase.setValue(dataMap);
+                myDatabase.setValue(Person.class);
                 bill = bill + Settle.paid.get(i);
                 count++;
             }

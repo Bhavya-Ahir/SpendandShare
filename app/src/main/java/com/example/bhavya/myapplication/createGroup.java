@@ -15,6 +15,8 @@ import com.example.bhavya.myapplication.R;
 
 import java.util.ArrayList;
 
+import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
+
 public class createGroup extends AppCompatActivity {
 
     Button save;
@@ -47,40 +49,32 @@ public class createGroup extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String getInput = null;
+                String getInput;
                 double getamt;
-               /* if(txt.getText().toString().length()!=0)
-                  getInput=txt.getText().toString();
-                else {
+                if(txt.getText().toString().length()==0||txt.getText().equals(" ")) {
                     Toast.makeText(createGroup.this, "Please enter a Name", Toast.LENGTH_LONG).show();
-                    getInput=NULL;
-                }*/
-
-                if (txt.getText().toString().length() != 0) {
-                    //Toast.makeText(createGroup.this, "Please Enter  name", Toast.LENGTH_LONG).show();
-                    getInput = txt.getText().toString();
-
-
-                    if (amt.getText().toString().length() == 0) {
-                        getamt = 0.0;
-                        amt.setText(0);
-                    }
-                    getamt = Double.parseDouble(amt.getText().toString());
-
-                    addarray.add(getInput);
-                    addamt.add(getamt);
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(createGroup.this,
-                            android.R.layout.simple_list_item_1, addarray);
-                    ArrayAdapter<Double> amtadapter = new ArrayAdapter<Double>(createGroup.this,
-                            android.R.layout.simple_list_item_1, addamt);
-                    show.setAdapter(adapter);
-                    show1.setAdapter(amtadapter);
-                    ((EditText) findViewById(R.id.txtInput)).setText(" ");
-                    ((EditText) findViewById(R.id.amtInput)).setText(" ");
-                } else {
-                    Toast.makeText(createGroup.this, "Please Enter  name", Toast.LENGTH_LONG).show();
-
+                    getInput = NULL;
                 }
+                else {
+                    getInput=txt.getText().toString();
+                }
+
+                  if(amt.getText().toString().length()==0||txt.getText().equals(" "))
+                      getamt=0;
+                  else
+                      getamt=Double.parseDouble(amt.getText().toString());
+
+
+                addarray.add(getInput);
+                addamt.add(getamt);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(createGroup.this,
+                        android.R.layout.simple_list_item_1, addarray);
+                ArrayAdapter<Double> amtadapter = new ArrayAdapter<Double>(createGroup.this,
+                        android.R.layout.simple_list_item_1, addamt);
+                show.setAdapter(adapter);
+                show1.setAdapter(amtadapter);
+                ((EditText)findViewById(R.id.txtInput)).setText(" ");
+                ((EditText)findViewById(R.id.amtInput)).setText(" ");
             }
         });
 
