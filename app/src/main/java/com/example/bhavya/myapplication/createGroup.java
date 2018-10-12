@@ -1,4 +1,4 @@
-package com.example.bhavya.myapplication.GROUPS;
+package com.example.bhavya.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import com.example.bhavya.myapplication.R;
 
 import java.util.ArrayList;
 
@@ -28,7 +26,7 @@ public class createGroup extends AppCompatActivity {
     ListView show1;
     Button newactivity;
     String groupName;
-    Spinner spinner;
+    static Spinner spinner;
     ArrayAdapter<CharSequence> spinneradapter;
 
     @Override
@@ -51,18 +49,17 @@ public class createGroup extends AppCompatActivity {
             public void onClick(View v) {
                 String getInput;
                 double getamt;
-                if(txt.getText().toString().length()==0||txt.getText().equals(" ")) {
+                if (txt.getText().toString().length() == 0 || txt.getText().equals("")) {
                     Toast.makeText(createGroup.this, "Please enter a Name", Toast.LENGTH_LONG).show();
                     getInput = NULL;
-                }
-                else {
-                    getInput=txt.getText().toString();
+                } else {
+                    getInput = txt.getText().toString();
                 }
 
-                  if(amt.getText().toString().length()==0||txt.getText().equals(" "))
-                      getamt=0;
-                  else
-                      getamt=Double.parseDouble(amt.getText().toString());
+                if (amt.getText().toString().length() == 0 || txt.getText().equals(""))
+                    getamt = 0;
+                else
+                    getamt = Double.parseDouble(amt.getText().toString());
 
 
                 addarray.add(getInput);
@@ -73,8 +70,8 @@ public class createGroup extends AppCompatActivity {
                         android.R.layout.simple_list_item_1, addamt);
                 show.setAdapter(adapter);
                 show1.setAdapter(amtadapter);
-                ((EditText)findViewById(R.id.txtInput)).setText(" ");
-                ((EditText)findViewById(R.id.amtInput)).setText(" ");
+                ((EditText) findViewById(R.id.txtInput)).setText("");
+                ((EditText) findViewById(R.id.amtInput)).setText("0");
             }
         });
 

@@ -1,4 +1,4 @@
-package com.example.bhavya.myapplication.Login;
+package com.example.bhavya.myapplication;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -11,8 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.bhavya.myapplication.Main.MainActivity;
-import com.example.bhavya.myapplication.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -28,6 +26,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.FirebaseUserMetadata;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
 
 
 public class login extends AppCompatActivity {
@@ -208,9 +208,9 @@ public class login extends AppCompatActivity {
 
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        FirebaseUserMetadata metadata = mAuth.getCurrentUser().getMetadata();
+        FirebaseUserMetadata metadata = Objects.requireNonNull(mAuth.getCurrentUser()).getMetadata();
         if (metadata.getCreationTimestamp() == metadata.getLastSignInTimestamp()) {
-            FirebaseDatabase.getInstance().getReference().child("Users").child(user.getEmail());
+            FirebaseDatabase.getInstance().getReference().child("Users").child(Objects.requireNonNull(user.getEmail()));
         }
         if (acct != null) {
 

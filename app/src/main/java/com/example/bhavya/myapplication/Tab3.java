@@ -1,71 +1,47 @@
-package com.example.bhavya.myapplication.Main;
+package com.example.bhavya.myapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-
-import com.example.bhavya.myapplication.R;
-import com.example.bhavya.myapplication.GROUPS.Settle;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Tab3 extends Fragment {
-    Button save;
-    ArrayList<String> addarray=new ArrayList<String>();
-    ArrayList<Double> addamt=new ArrayList<Double>();
-    EditText txt;
-    EditText amt;
-    ListView show;
-    ListView show1;
-    Button newactivity;
-    @Nullable
+
+    View rootView;
+    public RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private List<after_paid_history> listItems_1;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final   View view=inflater.inflate(R.layout.tab3,container,false);
-        super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        newactivity=(Button)view.findViewById(R.id.btnSettle);
-        txt=(EditText)view.findViewById(R.id.txtInput);
-        amt=(EditText)view.findViewById(R.id.amtInput);
-        show = (ListView)view.findViewById(R.id.listView);
-        show1 = (ListView)view.findViewById(R.id.listView1);
-        save=(Button)view.findViewById(R.id.btnSave);
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String getInput=txt.getText().toString();
-                double getamt=Double.parseDouble(amt.getText().toString());
-                addarray.add(getInput);
-                addamt.add(getamt);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                        android.R.layout.simple_list_item_1, addarray);
-                ArrayAdapter<Double> amtadapter = new ArrayAdapter<Double>(getActivity(),
-                        android.R.layout.simple_list_item_1, addamt);
-                show.setAdapter(adapter);
-                show1.setAdapter(amtadapter);
-                ((EditText)view.findViewById(R.id.txtInput)).setText(" ");
-                ((EditText)view.findViewById(R.id.amtInput)).setText(" ");
-            }
-        });
-        newactivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), Settle.class);
-                intent.putExtra("name",addarray);
-                intent.putExtra("paid",addamt);
-                startActivity(intent);
-            }
-        });
-        return view;
+        rootView = inflater.inflate(R.layout.tab3, container, false);
+        super.onCreate(savedInstanceState);
+
+
+        return rootView;
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_10);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        listItems_1 = new ArrayList<>();
+
+        adapter = new adapter_for_history(listItems_1, getActivity());
+        recyclerView.setAdapter(adapter);
     }
 }
+

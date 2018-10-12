@@ -1,9 +1,7 @@
-package com.example.bhavya.myapplication.GROUPS;
+package com.example.bhavya.myapplication;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import com.example.bhavya.myapplication.R;
+import android.support.v7.app.AppCompatActivity;
 
 public class GroupData extends AppCompatActivity {
 

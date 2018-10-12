@@ -1,4 +1,4 @@
-package com.example.bhavya.myapplication.GROUPS;
+package com.example.bhavya.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.example.bhavya.myapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -21,6 +21,7 @@ public class Settle extends AppCompatActivity {
     static ArrayList<Double> paid = new ArrayList<Double>();
     public DatabaseReference myDatabase;
     public String groupName;
+    private TextView btype;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -32,11 +33,16 @@ public class Settle extends AppCompatActivity {
         name = intent.getStringArrayListExtra("name");
         paid = (ArrayList<Double>) getIntent().getSerializableExtra("paid");
         //  share();
+
+        btype = (TextView) findViewById(R.id.billType);
         groupName = getIntent().getStringExtra("Group Name");
-        myDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getUid()).child(groupName);
+        myDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP: " + groupName).child("BILL 1 : " + createGroup.spinner.getSelectedItem().toString());
         Group p=new Group();
         p.createPerson();
         p.calculateBalance();
+
+        btype.setText(createGroup.spinner.getSelectedItem().toString());
+
     }
 
     //public void share(){
@@ -87,7 +93,7 @@ public class Settle extends AppCompatActivity {
         ArrayList<Person> list = new ArrayList<Person>();
         ArrayList<Person> plist = new ArrayList<Person>();
         ArrayList<Person> nlist = new ArrayList<Person>();
-        //HashMap<String, Double> dataMap = new HashMap<>();
+        HashMap<String, Double> dataMap = new HashMap<>();
         private int count = 0;
         private double bill = 0;
 
@@ -102,9 +108,11 @@ public class Settle extends AppCompatActivity {
             for (int i = 0; i < Settle.name.size(); i++) {
                 list.add(new Person(Settle.name.get(i), Settle.paid.get(i), 0));
                 //dataMap.put(Person.class);
-//                dataMap.put("Amount paid "+i,Settle.paid.get(i).toString());
+                dataMap.put("Amount paid " + i, Settle.paid.get(i));
                 Log.i("grp name", groupName);
-                myDatabase.setValue(Person.class);
+                myDatabase.child(Settle.name.get(i)).child("BILL PAID ").setValue(Settle.paid.get(i));
+
+
                 bill = bill + Settle.paid.get(i);
                 count++;
             }
@@ -120,9 +128,11 @@ public class Settle extends AppCompatActivity {
                 list.get(i).setBalance(bill - list.get(i).getPaid());
 
                 if (list.get(i).getBalance() == 0) {
+                    myDatabase.child(Settle.name.get(i)).child("transaction").child(list.get(i).getName()).setValue(0);
                     System.out.println(message.add(list.get(i).getName() + " needs to pay Rs:0 "));
                 }
                 if (list.get(i).getBalance() > 0) {
+
                     plist.add(list.get(i));
                 }
                 if (list.get(i).getBalance() < 0) {
@@ -142,6 +152,7 @@ public class Settle extends AppCompatActivity {
                 Person x = plist.get(i);
                 Person y = nlist.get(j);
                 if ((-1 * y.getBalance()) > x.getBalance()) {
+                    myDatabase.child(Settle.name.get(i)).child("transaction").child(y.getName()).setValue(x.getBalance());
                     System.out.println(message.add(x.getName() + " will pay Rs :" + x.getBalance() + " to " + y.getName()));
                     y.setBalance(y.getBalance() + x.getBalance());//updating negative list
                     x.setBalance(0);

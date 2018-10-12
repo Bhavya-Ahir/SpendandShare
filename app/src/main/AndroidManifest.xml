@@ -4,6 +4,8 @@
     package="com.example.bhavya.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Login.login">
+        <activity android:name=".login">
             <intent-filter>
                 <action android:name=".login" />
 
@@ -21,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Main.MainActivity"
+            android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,27 +31,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GROUPS.Settle">
+        <activity android:name=".Settle">
             <intent-filter>
                 <action android:name=".Main2Activity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".GROUPS.createGroup">
+        <activity android:name=".createGroup">
             <intent-filter>
                 <action android:name=".createGroup" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".GROUPS.GroupData">
+        <activity android:name=".GroupData">
             <intent-filter>
                 <action android:name=".GroupData" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!--
+                <activity android:name=".after_paid_history"></activity>
+        -->
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.example.bhavya.myapplication.Recycler;
+package com.example.bhavya.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,8 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.example.bhavya.myapplication.R;
 
 import java.util.List;
 

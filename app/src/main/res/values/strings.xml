@@ -8,6 +8,8 @@
     <string name="sign_out">Sign OUT</string>
     <string name="title_activity_create_group">create_group</string>
     <string name="Select_Expenditure_type">Select Expenditure type</string>
+    <string name="add_to_group">ADD TO GROUP</string>
+    <string name="plus">+</string>
     <string-array name="Expenditure_type">
         <item>Food</item>
         <item>Travel</item>
