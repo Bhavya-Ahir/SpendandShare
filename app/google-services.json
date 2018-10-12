@@ -8,6 +8,50 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:794148279701:android:5f0c7d030e72c87d",
+        "android_client_info": {
+          "package_name": "com.b.ss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "794148279701-uiv29i8vsct1f55tde9q43n0ancraf4b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.b.ss",
+            "certificate_hash": "ac6fd6c0d02de211e67c72a057e1198908bb0f40"
+          }
+        },
+        {
+          "client_id": "794148279701-nkfpuir7qherrmt9fg7ksvb916tqlkpj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1aZlSThx6QM1lan2bTXqo3aMdjUoImsE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "794148279701-nkfpuir7qherrmt9fg7ksvb916tqlkpj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:794148279701:android:0ceadc60038067aa",
         "android_client_info": {
           "package_name": "com.example.bhavya.myapplication"
@@ -15,7 +59,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "794148279701-b7355aiigk8bv2sphm4of740a643a8ku.apps.googleusercontent.com",
+          "client_id": "794148279701-o4lm07mpbc6jo1iehgsghdgk93kt8cqe.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.bhavya.myapplication",
