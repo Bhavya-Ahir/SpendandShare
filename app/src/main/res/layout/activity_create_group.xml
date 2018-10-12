@@ -6,6 +6,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".createGroup">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/expendituretextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textSize="20sp" />
+
+    android:layout_alignParentLeft="true"
+    android:text="Select Expenditure type"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textSize="18sp" />
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/expendituretextview"
+        ></Spinner>
+
+</RelativeLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/username_text_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <EditText
         android:id="@+id/txtInput"
@@ -14,14 +44,23 @@
         android:ems="10"
         android:hint="Enter name"
         android:inputType="textPersonName" />
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/amtInput"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/username1_text_input"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Enter amount"
-        android:inputType="number" />
+        android:layout_height="wrap_content">
+
+
+        <EditText
+            android:id="@+id/amtInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter amount"
+            android:inputType="number" />
+    </android.support.design.widget.TextInputLayout>
+
 
     <Button
         android:id="@+id/btnSave"
@@ -43,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="#f00" />
+            android:background="#ffffff" />
 
 
         <ListView
@@ -51,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="#0f0" />
+            android:background="#ffffff" />
         >
 
     </LinearLayout>

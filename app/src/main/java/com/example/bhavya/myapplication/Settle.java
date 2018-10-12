@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +21,7 @@ public class Settle extends AppCompatActivity {
     static ArrayList<Double> paid = new ArrayList<Double>();
     public DatabaseReference myDatabase;
     public String groupName;
+    private TextView btype;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -31,11 +33,16 @@ public class Settle extends AppCompatActivity {
         name = intent.getStringArrayListExtra("name");
         paid = (ArrayList<Double>) getIntent().getSerializableExtra("paid");
         //  share();
+
+        btype = (TextView) findViewById(R.id.billType);
         groupName = getIntent().getStringExtra("Group Name");
-        myDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getUid()).child(groupName);
+        myDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP: " + groupName).child("BILL 1 : " + createGroup.spinner.getSelectedItem().toString());
         Group p=new Group();
         p.createPerson();
         p.calculateBalance();
+
+        btype.setText(createGroup.spinner.getSelectedItem().toString());
+
     }
 
     //public void share(){
@@ -100,10 +107,12 @@ public class Settle extends AppCompatActivity {
         public  void createPerson() {
             for (int i = 0; i < Settle.name.size(); i++) {
                 list.add(new Person(Settle.name.get(i), Settle.paid.get(i), 0));
-                dataMap.put(Settle.name.get(i), Settle.paid.get(i));
-//                dataMap.put("Amount paid "+i,Settle.paid.get(i).toString());
+                //dataMap.put(Person.class);
+                //dataMap.put("Amount paid " + i, Settle.paid.get(i));
                 Log.i("grp name", groupName);
-                myDatabase.setValue(dataMap);
+                myDatabase.child(Settle.name.get(i)).child("BILL PAID ").setValue(Settle.paid.get(i));
+
+
                 bill = bill + Settle.paid.get(i);
                 count++;
             }
@@ -119,9 +128,11 @@ public class Settle extends AppCompatActivity {
                 list.get(i).setBalance(bill - list.get(i).getPaid());
 
                 if (list.get(i).getBalance() == 0) {
+                    myDatabase.child(Settle.name.get(i)).child("transaction").child(list.get(i).getName()).setValue(0);
                     System.out.println(message.add(list.get(i).getName() + " needs to pay Rs:0 "));
                 }
                 if (list.get(i).getBalance() > 0) {
+
                     plist.add(list.get(i));
                 }
                 if (list.get(i).getBalance() < 0) {
@@ -141,6 +152,7 @@ public class Settle extends AppCompatActivity {
                 Person x = plist.get(i);
                 Person y = nlist.get(j);
                 if ((-1 * y.getBalance()) > x.getBalance()) {
+                    myDatabase.child(x.getName()).child("transaction").child(y.getName()).setValue(x.getBalance());
                     System.out.println(message.add(x.getName() + " will pay Rs :" + x.getBalance() + " to " + y.getName()));
                     y.setBalance(y.getBalance() + x.getBalance());//updating negative list
                     x.setBalance(0);
@@ -148,6 +160,8 @@ public class Settle extends AppCompatActivity {
                     // break outer;
                 }
                 if (x.getBalance() > (-1 * y.getBalance())) {
+                    myDatabase.child(x.getName()).child("transaction").child(y.getName()).setValue(x.getBalance());
+
                     System.out.println(message.add(x.getName() + " will pay Rs:" + (-1 * y.getBalance()) + " to " + y.getName()));
                     x.setBalance(x.getBalance() + y.getBalance());//updating positive list
                     y.setBalance(0);
@@ -156,6 +170,8 @@ public class Settle extends AppCompatActivity {
                 }
 
                 if (x.getBalance() + y.getBalance() == 0) {
+                    myDatabase.child(x.getName()).child("transaction").child(y.getName()).setValue(x.getBalance());
+
 
                     System.out.println(message.add(x.getName() + " will pay Rs :" + x.getBalance() + " to " + y.getName()));
                     x.setBalance(0);

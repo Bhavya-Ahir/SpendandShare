@@ -27,6 +27,8 @@ import com.google.firebase.auth.FirebaseUserMetadata;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
+
 
 public class login extends AppCompatActivity {
 
@@ -206,9 +208,9 @@ public class login extends AppCompatActivity {
 
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        FirebaseUserMetadata metadata = mAuth.getCurrentUser().getMetadata();
+        FirebaseUserMetadata metadata = Objects.requireNonNull(mAuth.getCurrentUser()).getMetadata();
         if (metadata.getCreationTimestamp() == metadata.getLastSignInTimestamp()) {
-            FirebaseDatabase.getInstance().getReference().child("Users").child(user.getEmail());
+            FirebaseDatabase.getInstance().getReference().child("Users").child(Objects.requireNonNull(user.getEmail()));
         }
         if (acct != null) {
 

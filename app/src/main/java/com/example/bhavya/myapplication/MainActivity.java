@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_signOut) {
             mAuth.signOut();
-            Intent intent=new Intent(MainActivity.this,login.class);
+            Intent intent = new Intent(".login");
             finish();
             startActivity(intent);
             return true;
