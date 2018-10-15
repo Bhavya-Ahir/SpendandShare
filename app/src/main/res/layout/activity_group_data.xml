@@ -42,7 +42,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10sp"
-                        android:text="no. "
+                        android:text="no "
                         android:textSize="20sp" />
 
                     <TextView
