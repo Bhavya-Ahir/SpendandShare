@@ -25,6 +25,7 @@ public class Tab1 extends Fragment {
     private ImageView photo;
     FirebaseAuth mAuth;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

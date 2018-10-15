@@ -34,24 +34,24 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
+                        android:layout_margin="10sp"
                         android:text="BILL"
-                        android:textSize="50sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:text="no. "
-                        android:textSize="50sp" />
+                        android:layout_margin="10sp"
+                        android:text="no "
+                        android:textSize="20sp" />
 
-                    <ImageView
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:baselineAligned="false"
-                        android:padding="20dp"
-                        android:scaleType="fitCenter" />
+                        android:textSize="20sp"
+                        android:layout_margin="10sp"
+                        android:paddingLeft="100dp"
+                        android:text="DETAILS" />
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
