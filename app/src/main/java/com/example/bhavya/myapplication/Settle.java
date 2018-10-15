@@ -19,6 +19,8 @@ public class Settle extends AppCompatActivity {
 
     static ArrayList<String> name = new ArrayList<String>();
     static ArrayList<Double> paid = new ArrayList<Double>();
+    public DatabaseReference groupdatabaseref;
+
     public DatabaseReference myDatabase;
     public String groupName;
     private TextView btype;
@@ -36,9 +38,19 @@ public class Settle extends AppCompatActivity {
 
         btype = (TextView) findViewById(R.id.billType);
         groupName = getIntent().getStringExtra("Group Name");
-        myDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP: " + groupName).child("BILL 1 : " + createGroup.spinner.getSelectedItem().toString());
+
+        groupdatabaseref = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP: " + groupName).child("Members");
+
+        for (int i = 0; i < Settle.name.size(); i++) {
+            groupdatabaseref.child(Settle.name.get(i)).setValue(Settle.paid.get(i));
+        }
+
+
+        myDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP: " + groupName).child("_BILLS").child("BILL 1 : " + createGroup.spinner.getSelectedItem().toString());
+
         Group p=new Group();
         p.createPerson();
+
         p.calculateBalance();
 
         btype.setText(createGroup.spinner.getSelectedItem().toString());
