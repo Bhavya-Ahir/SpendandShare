@@ -164,8 +164,8 @@ public class Settle extends AppCompatActivity {
                 Person x = plist.get(i);
                 Person y = nlist.get(j);
                 if ((-1 * y.getBalance()) > x.getBalance()) {
-                    myDatabase.child(x.getName()).child("transaction").child(y.getName()).setValue(-x.getBalance());
-                    myDatabase.child(y.getName()).child("transaction").setValue(x.getBalance());
+                    myDatabase.child(x.getName()).child("transaction").child("i paid to "+y.getName()).setValue(-x.getBalance());
+                    myDatabase.child(y.getName()).child("transaction").child("i received from "+x.getName()).setValue(x.getBalance());
                     System.out.println(message.add(x.getName() + " will pay Rs :" + x.getBalance() + " to " + y.getName()));
                     y.setBalance(y.getBalance() + x.getBalance());//updating negative list
                     x.setBalance(0);
@@ -173,8 +173,8 @@ public class Settle extends AppCompatActivity {
                     // break outer;
                 }
                 if (x.getBalance() > (-1 * y.getBalance())) {
-                    myDatabase.child(x.getName()).child("transaction").child(y.getName()).setValue(-x.getBalance());
-                    myDatabase.child(y.getName()).child("transaction").setValue(x.getBalance());
+                    myDatabase.child(x.getName()).child("transaction").child("i paid to "+y.getName()).setValue(-x.getBalance());
+                    myDatabase.child(y.getName()).child("transaction").child("i received from "+x.getName()).setValue(x.getBalance());
                     System.out.println(message.add(x.getName() + " will pay Rs:" + (-1 * y.getBalance()) + " to " + y.getName()));
                     x.setBalance(x.getBalance() + y.getBalance());//updating positive list
                     y.setBalance(0);
@@ -183,8 +183,8 @@ public class Settle extends AppCompatActivity {
                 }
 
                 if (x.getBalance() + y.getBalance() == 0) {
-                    myDatabase.child(x.getName()).child("transaction").child(y.getName()).setValue(-x.getBalance());
-                    myDatabase.child(y.getName()).child("transaction").setValue(x.getBalance());
+                    myDatabase.child(x.getName()).child("transaction").child("i paid to "+y.getName()).setValue(-x.getBalance());
+                    myDatabase.child(y.getName()).child("transaction").child("i received from "+x.getName()).setValue(x.getBalance());
                     System.out.println(message.add(x.getName() + " will pay Rs :" + x.getBalance() + " to " + y.getName()));
                     x.setBalance(0);
                     y.setBalance(0);
