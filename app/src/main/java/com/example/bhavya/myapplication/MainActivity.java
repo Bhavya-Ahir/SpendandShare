@@ -18,7 +18,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 public class MainActivity extends AppCompatActivity {
 
     /**
