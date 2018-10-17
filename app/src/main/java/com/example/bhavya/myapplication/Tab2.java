@@ -66,12 +66,14 @@ public class Tab2 extends Fragment {
         user_groups.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 for (DataSnapshot groups : dataSnapshot.getChildren()) {
                     String g1 = groups.toString();
-                    g1 = g1.substring(g1.indexOf(":"), g1.indexOf(","));
+                    g1 = g1.substring(g1.indexOf("P") + 2, g1.indexOf(","));
                     item_list list = new item_list(g1);
                     listItems.add(list);
 
+                    po
 
                 }
                 array_adapter g = new array_adapter(listItems, getActivity());
@@ -119,7 +121,7 @@ public class Tab2 extends Fragment {
                 }
                 else{
                     item_list list = new item_list(
-                            subEditText.getText().toString().toUpperCase());
+                            subEditText.getText().toString());
 
                     listItems.add(list);
 

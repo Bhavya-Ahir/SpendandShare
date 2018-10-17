@@ -52,8 +52,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <!--                 <activity android:name=".after_paid_history"></activity> -->
-        <activity android:name=".Add_Bill"></activity>
+
+        <activity android:name=".Add_Bill">
+            <intent-filter>
+                <action android:name=".Add_Bill" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>

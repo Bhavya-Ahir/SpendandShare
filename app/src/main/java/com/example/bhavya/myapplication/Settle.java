@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -39,14 +40,16 @@ public class Settle extends AppCompatActivity {
         btype = (TextView) findViewById(R.id.billType);
         groupName = getIntent().getStringExtra("Group Name");
 
-        groupdatabaseref = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP: " + groupName).child("Members");
+        Toast.makeText(this, groupName, Toast.LENGTH_SHORT).show();
+
+        groupdatabaseref = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + groupName).child("Members");
 
         for (int i = 0; i < Settle.name.size(); i++) {
             groupdatabaseref.child(Settle.name.get(i)).setValue(Settle.paid.get(i));
         }
 
 
-        myDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP: " + groupName).child("_BILLS").child("BILL 1 : " + createGroup.spinner.getSelectedItem().toString());
+        myDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + groupName).child("_BILLS").child("BILL 1 : " + createGroup.spinner.getSelectedItem().toString());
 
         Group p=new Group();
         p.createPerson();

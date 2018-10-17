@@ -33,14 +33,14 @@ public class createGroup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_group);
-        newactivity=(Button)findViewById(R.id.btnSettle);
-        txt=(EditText)findViewById(R.id.txtInput);
-        amt=(EditText)findViewById(R.id.amtInput);
-        show = (ListView)findViewById(R.id.listView);
-        show1 = (ListView)findViewById(R.id.listView1);
-        save=(Button)findViewById(R.id.btnSave);
-        spinner=(Spinner)findViewById(R.id.spinner);
-        spinneradapter=ArrayAdapter.createFromResource(this,R.array.Expenditure_type,android.R.layout.simple_spinner_item);
+        newactivity = (Button) findViewById(R.id.btnSettle);
+        txt = (EditText) findViewById(R.id.txtInput);
+        amt = (EditText) findViewById(R.id.amtInput);
+        show = (ListView) findViewById(R.id.listView);
+        show1 = (ListView) findViewById(R.id.listView1);
+        save = (Button) findViewById(R.id.btnSave);
+        spinner = (Spinner) findViewById(R.id.spinner);
+        spinneradapter = ArrayAdapter.createFromResource(this, R.array.Expenditure_type, android.R.layout.simple_spinner_item);
         spinneradapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinneradapter);
         groupName = getIntent().getStringExtra("Group Name");
@@ -85,10 +85,7 @@ public class createGroup extends AppCompatActivity {
                 finish();
                 startActivity(intent);
             }
-                                       }
+        });
 
-        );
     }
-
-
 }

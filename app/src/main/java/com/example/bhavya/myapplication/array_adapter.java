@@ -38,6 +38,7 @@ public class array_adapter extends RecyclerView.Adapter<array_adapter.ViewHolder
 
         final item_list listItem=listItems.get(i);
 
+
         viewHolder.name.setText(listItem.getName());
 
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +46,9 @@ public class array_adapter extends RecyclerView.Adapter<array_adapter.ViewHolder
             public void onClick(View v) {
 
                 Intent i = new Intent(".GroupData");
+                i.putExtra("Group Name", listItem.getName());
                 context.startActivity(i);
+
             }
         });
     }
