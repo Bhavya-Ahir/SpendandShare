@@ -10,15 +10,12 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 
-import java.util.List;
-
 public class GroupData extends AppCompatActivity {
 
     private FloatingActionButton FAB;
     private String groupName;
     ListView listViewMembers;
     private DatabaseReference groupData;
-    List<Settle.Person> memberList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +31,8 @@ public class GroupData extends AppCompatActivity {
                 FABpressed();
             }
         });
+
+
     }
 
     private void FABpressed() {

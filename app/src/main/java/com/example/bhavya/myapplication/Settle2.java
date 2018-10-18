@@ -1,6 +1,5 @@
 package com.example.bhavya.myapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -15,8 +14,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import static com.example.bhavya.myapplication.Settle2.myDatabase1;
 
 public class Settle2 extends AppCompatActivity {
     static ArrayList<Lists_for_bills> newBillList;
@@ -33,7 +30,13 @@ public class Settle2 extends AppCompatActivity {
         Toast.makeText(Settle2.this, "inside settle 2", Toast.LENGTH_LONG).show();
         groupName = getIntent().getStringExtra("Group Name");
         newBillList = (ArrayList<Lists_for_bills>) bundleObjeect.getSerializable("itemList");
-        myDatabase1= FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + groupName).child("_BILLS").child("BILL 2: " + createGroup.spinner.getSelectedItem().toString());
+        myDatabase1 = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + groupName).child("_BILLS").child("BILL 2: ");
+
+        Settle2.Group p = new Settle2.Group();
+        p.createPerson();
+
+        p.calculateBalance();
+
     }
 
     class Person {
@@ -176,10 +179,11 @@ public class Settle2 extends AppCompatActivity {
             ListView listView1;
             listView1 = (ListView) findViewById(R.id.list1);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(Settle2.this,
-                    android.R.layout.simple_list_item_1, android.R.id.text1, message);
+                    android.R.layout.simple_list_item_1, android.R.id.text2, message);
             listView1.setAdapter(adapter);
 
         }
+
 
     }
 
