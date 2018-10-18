@@ -14,8 +14,7 @@
         android:focusable="true"
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
-        app:cardCornerRadius="70dp"
-        android:elevation="500dp">
+        app:cardCornerRadius="50dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,12 +22,6 @@
             android:orientation="horizontal"
             android:padding="15dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" GROUP "
-                android:textSize="22sp"
-                android:id="@+id/type" />
 
             <TextView
                 android:id="@+id/name"

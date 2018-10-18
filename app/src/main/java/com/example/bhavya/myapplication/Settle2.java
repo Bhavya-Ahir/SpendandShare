@@ -17,19 +17,20 @@ import java.util.HashMap;
 
 public class Settle2 extends AppCompatActivity {
     static ArrayList<Lists_for_bills> newBillList;
-    public DatabaseReference groupdatabaseref;
     static DatabaseReference myDatabase1;
     static String groupName;
     private TextView btype;
+    public ListView listView1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settle2);
-        Bundle bundleObjeect = getIntent().getExtras();
+        Bundle bundleObject = getIntent().getExtras();
         Toast.makeText(Settle2.this, "inside settle 2", Toast.LENGTH_LONG).show();
         groupName = getIntent().getStringExtra("Group Name");
-        newBillList = (ArrayList<Lists_for_bills>) bundleObjeect.getSerializable("itemList");
+        newBillList = (ArrayList<Lists_for_bills>) bundleObject.getSerializable("listItems");
         myDatabase1 = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + groupName).child("_BILLS").child("BILL 2: ");
 
         Settle2.Group p = new Settle2.Group();
@@ -107,7 +108,7 @@ public class Settle2 extends AppCompatActivity {
                 myDatabase1.child(Settle2.newBillList.get(i).getName()).child("BILL PAID ").setValue(Double.parseDouble(Settle2.newBillList.get(i).getAmt()));
 
 
-                bill = bill + Settle.paid.get(i);
+                bill = bill + Double.parseDouble(Settle2.newBillList.get(i).getAmt());
                 count++;
             }
         }
@@ -176,10 +177,11 @@ public class Settle2 extends AppCompatActivity {
                 }
 
             }
-            ListView listView1;
+
+            Log.d("abc", message.toString());
             listView1 = (ListView) findViewById(R.id.list1);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(Settle2.this,
-                    android.R.layout.simple_list_item_1, android.R.id.text2, message);
+                    android.R.layout.simple_list_item_1, message);
             listView1.setAdapter(adapter);
 
         }

@@ -1,15 +1,11 @@
 package com.example.bhavya.myapplication;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -21,46 +17,36 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupData extends AppCompatActivity {
+public class BILL_DATA extends AppCompatActivity {
 
-    private FloatingActionButton FAB;
-    public static String groupName;
 
+    private String billname;
     public RecyclerView recyclerView;
 
-    private Context context = this;
-    static DatabaseReference groupData;
-    private RecyclerView.Adapter adapter;
-    private List<list_for_bills> listItems;
+    private DatabaseReference groupData;
 
+
+    private Context context = this;
+    private RecyclerView.Adapter adapter;
+    private List<bill_list> listItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_group_data);
+        setContentView(R.layout.activity_bill__dat);
 
-        groupName = getIntent().getStringExtra("Group Name");
+        billname = getIntent().getStringExtra("Bill Name");
 
-        Toast.makeText(this, groupName, Toast.LENGTH_SHORT).show();
-        FAB = (FloatingActionButton) findViewById(R.id.FAB);
 
-        FAB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FABpressed();
-            }
-        });
-
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_for_bills);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_for_bill_data);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         listItems = new ArrayList<>();
+        adapter = new array_adapter_for_datalist(listItems, this);
 
 
-        groupData = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + groupName).child("_BILLS");
-
-
-        adapter = new array_adapter2(listItems, this);
+        groupData = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + GroupData.groupName).child("_BILLS").child(billname);
 
         groupData.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -68,11 +54,17 @@ public class GroupData extends AppCompatActivity {
 
                 for (DataSnapshot bills : dataSnapshot.getChildren()) {
 
-                    String g = bills.getKey();
-                    list_for_bills list = new list_for_bills(g.toString());
+                    bills.getChildren();
+                    String name = bills.getKey();
+                    bills.getChildren();
+
+                    String amount = bills.getValue().toString();
+                    amount = amount.substring(1, amount.indexOf(","));
+
+                    bill_list list = new bill_list(name, amount);
                     listItems.add(list);
                 }
-                array_adapter2 g = new array_adapter2(listItems, context);
+                array_adapter_for_datalist g = new array_adapter_for_datalist(listItems, context);
                 recyclerView.setAdapter(g);
             }
 
@@ -82,15 +74,5 @@ public class GroupData extends AppCompatActivity {
             }
         });
 
-
     }
-
-    private void FABpressed() {
-
-        Intent i = new Intent(".Add_Bill");
-        i.putExtra("Group Name", groupName);
-        startActivity(i);
-
-    }
-
-    }
+}

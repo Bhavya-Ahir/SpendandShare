@@ -27,37 +27,12 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <ScrollView
-
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_for_bills"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_margin="10dp">
-
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/List_BILLS">
-
-            </ListView>
-
-
-        </ScrollView>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:layout_weight="1">
-
-            <ListView
-                android:id="@+id/List_settle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </ListView>
-
-        </ScrollView>
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1" />
 
 
     </LinearLayout>

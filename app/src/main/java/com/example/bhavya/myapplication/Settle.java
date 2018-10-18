@@ -197,6 +197,8 @@ public class Settle extends AppCompatActivity {
                 }
 
             }
+
+            Log.d("asdfgh", message.toString());
             ListView listView ;
             listView = (ListView) findViewById(R.id.list);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(Settle.this,

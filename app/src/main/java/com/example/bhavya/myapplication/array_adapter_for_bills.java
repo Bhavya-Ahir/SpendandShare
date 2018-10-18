@@ -59,6 +59,11 @@ public class array_adapter_for_bills extends RecyclerView.Adapter<array_adapter_
                 Log.d(TAG, " " + Lists_bills.get(i).amt + Lists_bills.get(i).name + i);
                 Log.d(TAG, " " + listItem.getName() + listItem.getAmt());
 
+                Lists_bills.get(i).setAmt(s.toString());
+
+
+
+
 
 
             }
@@ -66,7 +71,6 @@ public class array_adapter_for_bills extends RecyclerView.Adapter<array_adapter_
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                Lists_bills.get(i).amt = s.toString();
 
 
             }

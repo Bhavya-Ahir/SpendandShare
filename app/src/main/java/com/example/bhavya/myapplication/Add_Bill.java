@@ -95,6 +95,7 @@ public class Add_Bill extends AppCompatActivity {
                 bundle.putSerializable("listItems",listItems);
                 i.putExtras(bundle);
                 i.putExtra("Group Name", groupName);
+                finish();
                 startActivity(i);
             }
         });
