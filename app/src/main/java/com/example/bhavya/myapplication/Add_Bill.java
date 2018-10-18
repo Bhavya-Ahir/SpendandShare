@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,6 +28,7 @@ public class Add_Bill extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private ArrayList<Lists_for_bills> listItems;
     private Button button;
+    public static final String TAG = "GDFB";
 
 
     DatabaseReference databaseReference;
@@ -86,6 +88,7 @@ public class Add_Bill extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, Lists_for_bills.class.getName());
             }
         });
 

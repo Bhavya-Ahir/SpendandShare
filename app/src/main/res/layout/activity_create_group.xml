@@ -17,17 +17,13 @@
         android:layout_alignParentLeft="true"
         android:textSize="20sp" />
 
-    android:layout_alignParentLeft="true"
-    android:text="Select Expenditure type"
-    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-    android:textSize="18sp" />
+
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/expendituretextview"
-        ></Spinner>
+        android:layout_toRightOf="@+id/expendituretextview" />
 
 </RelativeLayout>
 

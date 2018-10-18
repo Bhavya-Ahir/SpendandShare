@@ -6,6 +6,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 public class array_adapter_for_bills extends RecyclerView.Adapter<array_adapter_for_bills.ItemHolder> {
 
 
+    public static final String TAG = "HI";
     private ArrayList<Lists_for_bills> Lists_bills;
     private Context context;
     DatabaseReference databaseReference;
@@ -54,12 +56,19 @@ public class array_adapter_for_bills extends RecyclerView.Adapter<array_adapter_
             @Override
             public void afterTextChanged(Editable s) {
 
+                Log.d(TAG, " " + Lists_bills.get(i).amt + Lists_bills.get(i).name + i);
+                Log.d(TAG, " " + listItem.getName() + listItem.getAmt());
+
+
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 Lists_bills.get(i).amt = s.toString();
+
+
             }
 
 

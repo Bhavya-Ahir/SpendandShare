@@ -14,16 +14,16 @@ import java.util.List;
 public class MemberList extends ArrayAdapter<Settle.Person> {
     private Activity context;
     private List<Settle.Person> memberList;
-    public MemberList(Activity context,List<Settle.Person> memberList){
-        super(context,R.layout.datalist_layout,memberList);
-        this.context=context;
-        this.memberList=memberList;
+
+    public MemberList(Activity context, List<Settle.Person> memberList) {
+        super(context, R.layout.datalist_layout, memberList);
+        this.context = context;
+        this.memberList = memberList;
     }
 
-    @androidx.annotation.NonNull
     @NonNull
     @Override
-    public View getView(int position, @androidx.annotation.Nullable  @Nullable View convertView, @androidx.annotation.NonNull @NonNull ViewGroup parent) {
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View v = convertView;
         if (v == null) {
             LayoutInflater inflater = context.getLayoutInflater();
@@ -34,9 +34,7 @@ public class MemberList extends ArrayAdapter<Settle.Person> {
             textViewName.setText(p.getName());
             textViewamt.setText(p.getName());
             return listViewitem1;
-            return super.getView(position, convertView, parent);
         }
         return super.getView(position, convertView, parent);
-        return v;
     }
 }

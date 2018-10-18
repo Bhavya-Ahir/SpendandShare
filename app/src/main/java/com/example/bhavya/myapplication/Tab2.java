@@ -73,7 +73,6 @@ public class Tab2 extends Fragment {
                     item_list list = new item_list(g1);
                     listItems.add(list);
 
-                    po
 
                 }
                 array_adapter g = new array_adapter(listItems, getActivity());

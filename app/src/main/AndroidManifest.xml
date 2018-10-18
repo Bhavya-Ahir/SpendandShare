@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".login">
+        <activity
+            android:name=".login"
+            android:theme="@style/custom">
             <intent-filter>
                 <action android:name=".login" />
 
@@ -31,7 +33,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Settle">
+        <activity
+            android:name=".Settle"
+            android:theme="@style/custom">
             <intent-filter>
                 <action android:name=".Main2Activity" />
 
