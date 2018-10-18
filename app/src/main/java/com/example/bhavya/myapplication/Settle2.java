@@ -16,51 +16,26 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Settle extends AppCompatActivity {
+import static com.example.bhavya.myapplication.Settle2.myDatabase1;
 
-    static ArrayList<String> name = new ArrayList<String>();
-    static ArrayList<Double> paid = new ArrayList<Double>();
+public class Settle2 extends AppCompatActivity {
+    static ArrayList<Lists_for_bills> newBillList;
     public DatabaseReference groupdatabaseref;
-
-    public DatabaseReference myDatabase;
-    public String groupName;
+    static DatabaseReference myDatabase1;
+    static String groupName;
     private TextView btype;
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-
-
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
-        Intent intent = getIntent();
-        name = intent.getStringArrayListExtra("name");
-        paid = (ArrayList<Double>) getIntent().getSerializableExtra("paid");
-        //  share();
-
-        btype = (TextView) findViewById(R.id.billType);
+        setContentView(R.layout.activity_settle2);
+        Bundle bundleObjeect = getIntent().getExtras();
+        Toast.makeText(Settle2.this, "inside settle 2", Toast.LENGTH_LONG).show();
         groupName = getIntent().getStringExtra("Group Name");
-
-        Toast.makeText(this, groupName, Toast.LENGTH_SHORT).show();
-
-        groupdatabaseref = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + groupName).child("Members");
-
-        for (int x = 0; x < Settle.name.size(); x++) {
-            groupdatabaseref.child(Settle.name.get(x)).setValue(Settle.paid.get(x));
-        }
-
-
-        myDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + groupName).child("_BILLS").child("BILL 1 : " + createGroup.spinner.getSelectedItem().toString());
-
-        Group p=new Group();
-        p.createPerson();
-
-        p.calculateBalance();
-
-        btype.setText(createGroup.spinner.getSelectedItem().toString());
-
+        newBillList = (ArrayList<Lists_for_bills>) bundleObjeect.getSerializable("itemList");
+        myDatabase1= FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + groupName).child("_BILLS").child("BILL 2: " + createGroup.spinner.getSelectedItem().toString());
     }
 
-    //public void share(){
     class Person {
         private String name;
         private double paid;
@@ -104,7 +79,7 @@ public class Settle extends AppCompatActivity {
 
     class Group extends Person {
 
-        ArrayList<String> message=new ArrayList<>();
+        ArrayList<String> message = new ArrayList<>();
         ArrayList<Person> list = new ArrayList<Person>();
         ArrayList<Person> plist = new ArrayList<Person>();
         ArrayList<Person> nlist = new ArrayList<Person>();
@@ -119,13 +94,14 @@ public class Settle extends AppCompatActivity {
         public void setBill(double bill) {
             this.bill = bill;
         }
-        public  void createPerson() {
+
+        public void createPerson() {
             for (int i = 0; i < Settle.name.size(); i++) {
-                list.add(new Person(Settle.name.get(i), Settle.paid.get(i), 0));
+                list.add(new Person(Settle2.newBillList.get(i).getName(), Double.parseDouble(Settle2.newBillList.get(i).getAmt()), 0));
 
-                Log.i("grp name", groupName);
+                Log.i("grp name", Settle2.groupName);
 
-                myDatabase.child(Settle.name.get(i)).child("BILL PAID ").setValue(Settle.paid.get(i));
+                myDatabase1.child(Settle2.newBillList.get(i).getName()).child("BILL PAID ").setValue(Double.parseDouble(Settle2.newBillList.get(i).getAmt()));
 
 
                 bill = bill + Settle.paid.get(i);
@@ -143,7 +119,7 @@ public class Settle extends AppCompatActivity {
                 list.get(i).setBalance(bill - list.get(i).getPaid());
 
                 if (list.get(i).getBalance() == 0) {
-                    myDatabase.child(Settle.name.get(i)).child("transaction").child(list.get(i).getName()).setValue(0);
+                    myDatabase1.child(Settle2.newBillList.get(i).getName()).child("transaction").child(list.get(i).getName()).setValue(0);
                     System.out.println(message.add(list.get(i).getName() + " needs to pay Rs:0 "));
                 }
                 if (list.get(i).getBalance() > 0) {
@@ -167,8 +143,8 @@ public class Settle extends AppCompatActivity {
                 Person x = plist.get(i);
                 Person y = nlist.get(j);
                 if ((-1 * y.getBalance()) > x.getBalance()) {
-                    myDatabase.child(x.getName()).child("transaction").child("i paid to "+y.getName()).setValue(-x.getBalance());
-                    myDatabase.child(y.getName()).child("transaction").child("i received from "+x.getName()).setValue(x.getBalance());
+                    myDatabase1.child(x.getName()).child("transaction").child("i paid to " + y.getName()).setValue(-x.getBalance());
+                    myDatabase1.child(y.getName()).child("transaction").child("i received from " + x.getName()).setValue(x.getBalance());
                     System.out.println(message.add(x.getName() + " will pay Rs :" + x.getBalance() + " to " + y.getName()));
                     y.setBalance(y.getBalance() + x.getBalance());//updating negative list
                     x.setBalance(0);
@@ -176,8 +152,8 @@ public class Settle extends AppCompatActivity {
                     // break outer;
                 }
                 if (x.getBalance() > (-1 * y.getBalance())) {
-                    myDatabase.child(x.getName()).child("transaction").child("i paid to "+y.getName()).setValue(-x.getBalance());
-                    myDatabase.child(y.getName()).child("transaction").child("i received from "+x.getName()).setValue(x.getBalance());
+                    myDatabase1.child(x.getName()).child("transaction").child("i paid to " + y.getName()).setValue(-x.getBalance());
+                    myDatabase1.child(y.getName()).child("transaction").child("i received from " + x.getName()).setValue(x.getBalance());
                     System.out.println(message.add(x.getName() + " will pay Rs:" + (-1 * y.getBalance()) + " to " + y.getName()));
                     x.setBalance(x.getBalance() + y.getBalance());//updating positive list
                     y.setBalance(0);
@@ -186,8 +162,8 @@ public class Settle extends AppCompatActivity {
                 }
 
                 if (x.getBalance() + y.getBalance() == 0) {
-                    myDatabase.child(x.getName()).child("transaction").child("i paid to "+y.getName()).setValue(-x.getBalance());
-                    myDatabase.child(y.getName()).child("transaction").child("i received from "+x.getName()).setValue(x.getBalance());
+                    myDatabase1.child(x.getName()).child("transaction").child("i paid to " + y.getName()).setValue(-x.getBalance());
+                    myDatabase1.child(y.getName()).child("transaction").child("i received from " + x.getName()).setValue(x.getBalance());
                     System.out.println(message.add(x.getName() + " will pay Rs :" + x.getBalance() + " to " + y.getName()));
                     x.setBalance(0);
                     y.setBalance(0);
@@ -197,13 +173,14 @@ public class Settle extends AppCompatActivity {
                 }
 
             }
-            ListView listView ;
-            listView = (ListView) findViewById(R.id.list);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(Settle.this,
-                    android.R.layout.simple_list_item_1, android.R.id.text1,message);
-            listView.setAdapter(adapter);
+            ListView listView1;
+            listView1 = (ListView) findViewById(R.id.list1);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(Settle2.this,
+                    android.R.layout.simple_list_item_1, android.R.id.text1, message);
+            listView1.setAdapter(adapter);
 
         }
 
     }
+
 }

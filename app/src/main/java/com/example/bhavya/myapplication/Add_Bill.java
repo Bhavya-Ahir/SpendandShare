@@ -1,5 +1,6 @@
 package com.example.bhavya.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -89,6 +90,12 @@ public class Add_Bill extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, Lists_for_bills.class.getName());
+                Intent i = new Intent(Add_Bill.this, Settle2.class);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("listItems",listItems);
+                i.putExtras(bundle);
+                i.putExtra("Group Name", groupName);
+                startActivity(i);
             }
         });
 

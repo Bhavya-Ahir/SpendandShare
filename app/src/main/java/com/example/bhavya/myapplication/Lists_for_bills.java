@@ -1,6 +1,8 @@
 package com.example.bhavya.myapplication;
 
-public class Lists_for_bills {
+import java.io.Serializable;
+
+public class Lists_for_bills implements Serializable {
 
     public String name;
     public String amt;

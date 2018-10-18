@@ -56,14 +56,21 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity android:name=".Add_Bill">
             <intent-filter>
                 <action android:name=".Add_Bill" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Settle2"
+            android:theme="@style/custom">
+            <intent-filter>
+                <action android:name=".Settle2" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 
