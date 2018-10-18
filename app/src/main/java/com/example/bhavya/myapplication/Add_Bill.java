@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class Add_Bill extends AppCompatActivity {
-
+  //  static int x=2;
     View rootView;
     public RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -35,17 +35,17 @@ public class Add_Bill extends AppCompatActivity {
     DatabaseReference databaseReference;
     private String groupName;
 
-    static Spinner spinner;
-    ArrayAdapter<CharSequence> spinneradapter;
+    static Spinner spinner1;
+    ArrayAdapter<CharSequence> spinneradapter1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__bill);
-        spinner = (Spinner) findViewById(R.id.spinner);
-        spinneradapter = ArrayAdapter.createFromResource(this, R.array.Expenditure_type, android.R.layout.simple_spinner_item);
-        spinneradapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(spinneradapter);
+        spinner1 = (Spinner) findViewById(R.id.spinner1);
+        spinneradapter1 = ArrayAdapter.createFromResource(this, R.array.Expenditure_type, android.R.layout.simple_spinner_item);
+        spinneradapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(spinneradapter1);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_bill);
         recyclerView.setHasFixedSize(true);

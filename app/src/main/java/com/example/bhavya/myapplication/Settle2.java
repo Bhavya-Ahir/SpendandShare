@@ -19,8 +19,9 @@ public class Settle2 extends AppCompatActivity {
     static ArrayList<Lists_for_bills> newBillList;
     static DatabaseReference myDatabase1;
     static String groupName;
-    private TextView btype;
+    private TextView btype1;
     public ListView listView1;
+
 
 
     @Override
@@ -28,16 +29,18 @@ public class Settle2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settle2);
         Bundle bundleObject = getIntent().getExtras();
-        Toast.makeText(Settle2.this, "inside settle 2", Toast.LENGTH_LONG).show();
+        btype1 = (TextView) findViewById(R.id.billType1);
+        //Toast.makeText(Settle2.this, "inside settle 2", Toast.LENGTH_LONG).show();
         groupName = getIntent().getStringExtra("Group Name");
         newBillList = (ArrayList<Lists_for_bills>) bundleObject.getSerializable("listItems");
-        myDatabase1 = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + groupName).child("_BILLS").child("BILL 2: ");
+        createGroup.x=createGroup.x+1;
+        myDatabase1 = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + groupName).child("_BILLS").child("BILL "+createGroup.x+" : "+Add_Bill.spinner1.getSelectedItem().toString());
 
         Settle2.Group p = new Settle2.Group();
         p.createPerson();
 
         p.calculateBalance();
-
+        btype1.setText(Add_Bill.spinner1.getSelectedItem().toString());
     }
 
     class Person {

@@ -48,8 +48,8 @@ public class Settle extends AppCompatActivity {
             groupdatabaseref.child(Settle.name.get(x)).setValue(Settle.paid.get(x));
         }
 
-
-        myDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + groupName).child("_BILLS").child("BILL 1 : " + createGroup.spinner.getSelectedItem().toString());
+        createGroup.x=createGroup.x+1;
+        myDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + groupName).child("_BILLS").child("BILL "+createGroup.x+" : " + createGroup.spinner.getSelectedItem().toString());
 
         Group p=new Group();
         p.createPerson();

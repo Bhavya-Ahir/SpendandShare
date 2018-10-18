@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
 
 public class createGroup extends AppCompatActivity {
-
+    static int x=0;
     Button save;
     ArrayList<String> addarray=new ArrayList<String>();
     ArrayList<Double> addamt=new ArrayList<Double>();
