@@ -21,6 +21,7 @@ public class Settle extends AppCompatActivity {
     static ArrayList<String> name = new ArrayList<String>();
     static ArrayList<Double> paid = new ArrayList<Double>();
     public DatabaseReference groupdatabaseref;
+    private DatabaseReference gref;
 
     public DatabaseReference myDatabase;
     public String groupName;
@@ -43,6 +44,8 @@ public class Settle extends AppCompatActivity {
         Toast.makeText(this, groupName, Toast.LENGTH_SHORT).show();
 
         groupdatabaseref = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + groupName).child("Members");
+
+        gref = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + groupName).child("Group History");
 
         for (int x = 0; x < Settle.name.size(); x++) {
             groupdatabaseref.child(Settle.name.get(x)).setValue(Settle.paid.get(x));
@@ -145,6 +148,8 @@ public class Settle extends AppCompatActivity {
                 if (list.get(i).getBalance() == 0) {
                     myDatabase.child(Settle.name.get(i)).child("transaction").child(list.get(i).getName()).setValue(0);
                     System.out.println(message.add(list.get(i).getName() + " needs to pay Rs:0 "));
+                    gref.child(message.get(i).toString());
+
                 }
                 if (list.get(i).getBalance() > 0) {
 
@@ -170,6 +175,7 @@ public class Settle extends AppCompatActivity {
                     myDatabase.child(x.getName()).child("transaction").child("i paid to "+y.getName()).setValue(-x.getBalance());
                     myDatabase.child(y.getName()).child("transaction").child("i received from "+x.getName()).setValue(x.getBalance());
                     System.out.println(message.add(x.getName() + " will pay Rs :" + x.getBalance() + " to " + y.getName()));
+                    gref.child(message.get(i).toString());
                     y.setBalance(y.getBalance() + x.getBalance());//updating negative list
                     x.setBalance(0);
                     i++;
@@ -179,6 +185,8 @@ public class Settle extends AppCompatActivity {
                     myDatabase.child(x.getName()).child("transaction").child("i paid to "+y.getName()).setValue(-x.getBalance());
                     myDatabase.child(y.getName()).child("transaction").child("i received from "+x.getName()).setValue(x.getBalance());
                     System.out.println(message.add(x.getName() + " will pay Rs:" + (-1 * y.getBalance()) + " to " + y.getName()));
+                    gref.child(message.get(i).toString());
+
                     x.setBalance(x.getBalance() + y.getBalance());//updating positive list
                     y.setBalance(0);
                     j++;
@@ -189,6 +197,8 @@ public class Settle extends AppCompatActivity {
                     myDatabase.child(x.getName()).child("transaction").child("i paid to "+y.getName()).setValue(-x.getBalance());
                     myDatabase.child(y.getName()).child("transaction").child("i received from "+x.getName()).setValue(x.getBalance());
                     System.out.println(message.add(x.getName() + " will pay Rs :" + x.getBalance() + " to " + y.getName()));
+                    gref.child(message.get(i).toString());
+
                     x.setBalance(0);
                     y.setBalance(0);
                     i++;

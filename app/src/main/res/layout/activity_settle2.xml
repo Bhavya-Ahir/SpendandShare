@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/billType1"
+        android:id="@+id/bill_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp" />

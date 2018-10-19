@@ -6,7 +6,6 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -21,6 +20,7 @@ public class Settle2 extends AppCompatActivity {
     static String groupName;
     private TextView btype1;
     public ListView listView1;
+    private DatabaseReference gref;
 
 
 
@@ -29,10 +29,12 @@ public class Settle2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settle2);
         Bundle bundleObject = getIntent().getExtras();
-        btype1 = (TextView) findViewById(R.id.billType1);
+        btype1 = (TextView) findViewById(R.id.bill_1);
         //Toast.makeText(Settle2.this, "inside settle 2", Toast.LENGTH_LONG).show();
         groupName = getIntent().getStringExtra("Group Name");
         newBillList = (ArrayList<Lists_for_bills>) bundleObject.getSerializable("listItems");
+        gref = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + groupName).child("Group History");
+
         createGroup.x=createGroup.x+1;
         myDatabase1 = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("GROUP " + groupName).child("_BILLS").child("BILL "+createGroup.x+" : "+Add_Bill.spinner1.getSelectedItem().toString());
 
@@ -128,6 +130,8 @@ public class Settle2 extends AppCompatActivity {
                 if (list.get(i).getBalance() == 0) {
                     myDatabase1.child(Settle2.newBillList.get(i).getName()).child("transaction").child(list.get(i).getName()).setValue(0);
                     System.out.println(message.add(list.get(i).getName() + " needs to pay Rs:0 "));
+                    gref.child(message.toString());
+
                 }
                 if (list.get(i).getBalance() > 0) {
 
@@ -153,6 +157,8 @@ public class Settle2 extends AppCompatActivity {
                     myDatabase1.child(x.getName()).child("transaction").child("i paid to " + y.getName()).setValue(-x.getBalance());
                     myDatabase1.child(y.getName()).child("transaction").child("i received from " + x.getName()).setValue(x.getBalance());
                     System.out.println(message.add(x.getName() + " will pay Rs :" + x.getBalance() + " to " + y.getName()));
+
+                    gref.child(message.toString());
                     y.setBalance(y.getBalance() + x.getBalance());//updating negative list
                     x.setBalance(0);
                     i++;
@@ -162,6 +168,8 @@ public class Settle2 extends AppCompatActivity {
                     myDatabase1.child(x.getName()).child("transaction").child("i paid to " + y.getName()).setValue(-x.getBalance());
                     myDatabase1.child(y.getName()).child("transaction").child("i received from " + x.getName()).setValue(x.getBalance());
                     System.out.println(message.add(x.getName() + " will pay Rs:" + (-1 * y.getBalance()) + " to " + y.getName()));
+                    gref.child(message.toString());
+
                     x.setBalance(x.getBalance() + y.getBalance());//updating positive list
                     y.setBalance(0);
                     j++;
@@ -172,6 +180,8 @@ public class Settle2 extends AppCompatActivity {
                     myDatabase1.child(x.getName()).child("transaction").child("i paid to " + y.getName()).setValue(-x.getBalance());
                     myDatabase1.child(y.getName()).child("transaction").child("i received from " + x.getName()).setValue(x.getBalance());
                     System.out.println(message.add(x.getName() + " will pay Rs :" + x.getBalance() + " to " + y.getName()));
+                    gref.child(message.toString());
+
                     x.setBalance(0);
                     y.setBalance(0);
                     i++;
